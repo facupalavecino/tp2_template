@@ -6,8 +6,8 @@ import os
 
 class Database(object):
     session = None
-    db_user = os.getenv("DB_USER") if os.getenv("DB_USER") != None else "example"
-    db_pass = os.getenv("DB_PASS") if os.getenv("DB_PASS") != None else "example"
+    db_user = os.getenv("DB_USER") if os.getenv("DB_USER") != None else "1234"
+    db_pass = os.getenv("DB_PASS") if os.getenv("DB_PASS") != None else "1234"
     db_host = os.getenv("DB_HOST") if os.getenv("DB_HOST") != None else "db"
     db_name = os.getenv("DB_NAME") if os.getenv("DB_NAME") != None else "tp2"
     db_port = os.getenv("DB_PORT") if os.getenv("DB_PORT") != None else "7500"
