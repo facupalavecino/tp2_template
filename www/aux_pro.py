@@ -20,10 +20,3 @@ class Process(object):
             return self.process.pid
         return None
     
-    """stop_process: kill the process if there is a process executed
-    """
-
-    def stop_process(self):
-        if self.process != None:
-            os.killpg(os.getpgid(self.process.pid), signal.SIGTERM)
-            self.process = None
