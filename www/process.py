@@ -7,8 +7,9 @@ import time
 db = Database()
 session = db.get_session()
 sample = Samples()
-Base = declarative_base()
-while (True):	
+
+while (True):
+	print("Process working")
 	sample.humidity = random.randint(1,30)
 	sample.windspeed = random.randint(1,30)
 	sample.temperature = random.randint(1,30)
