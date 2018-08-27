@@ -9,13 +9,143 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
     <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/sticky-footer-navbar/">
-    <title>Hello, world!</title>
+    <title>Estación Meteorológica</title>
 </head>
 
 
 <body>
+<div class="navbar" style="background: #0097a7;">
+    <span class="navbar-brand mb-1" style="color: white; font-size: 25px;">Estación Meteorológica</span>
+</div>
 
+<main>
 
+<div class="container-fluid" style=" height: 150px"></div>
+
+<div class="card text-center" style="width: 80%; margin: 0px auto;">
+    <div class="card-body">
+        <button class="btn btn-info btn-lg" data-toggle="collapse" href="#multiCollapseExample1" role="button" aria-expanded="false" aria-controls="multiCollapseExample1">Promedio de las últimas 10 muestras</button>
+        <button class="btn btn-info btn-lg" type="button" data-toggle="collapse" data-target="#multiCollapseExample2" aria-expanded="false" aria-controls="multiCollapseExample2">Última muestra recolectada</button>
+        <div class="btn-group dropright">
+          <button type="button" class="btn btn-lg btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Selección del período de muestreo
+          </button>
+          <div class="dropdown-menu">
+            <!--En cada una de estas opciones hay que mandar al backend el período de refresco correspondiente-->
+            <a class="dropdown-item">1 segundo</a>
+            <a class="dropdown-item">2 segundos</a>
+            <a class="dropdown-item">5 segundos</a>
+            <a class="dropdown-item">10 segundos</a>
+            <a class="dropdown-item">30 segundos</a>
+            <a class="dropdown-item">60 segundos</a>
+          </div>
+        </div>   
+    </div>
+</div>
+
+<div class="collapse multi-collapse" id="multiCollapseExample1" style="padding-top: 25px;">
+    <div class="table-responsive">
+        <table class="table table-bordered" style="text-align: center; width: 75%; margin: 0px auto;">
+            <caption>Tabla 1: Promedio de las últimas 10 muestras</caption>
+            <thead class="thead-light">
+                <tr>
+                  <th scope="col"><b>ID</b></th>
+                  <th scope="col"><b>Temperatura</b></th>
+                  <th scope="col"><b>Humedad</b></th>
+                  <th scope="col"><b>Vel. del viento</b></th>
+                  <th scope="col"><b>Presión</b></th>
+                </tr>
+            </thead>
+            <tbody>
+                <!--Acá hay que reemplazar por un for y un solo bloque <tr><td> ya que el for hace los 10 necesarios.-->
+                <tr>
+                  <td>1</td>
+                  <td>2</td>
+                  <td>3</td>
+                  <td>4</td>
+                  <td>5</td>
+                </tr>
+                <tr>
+                  <td>a</td>
+                  <td>a</td>
+                  <td>a</td>
+                  <td>a</td>
+                  <td>a</td>
+                </tr>
+                <tr>
+                  <td>1</td>
+                  <td>2</td>
+                  <td>3</td>
+                  <td>4</td>
+                  <td>5</td>
+                </tr>
+            </tbody>
+            <thead class="thead-light">
+                <tr>
+                    <th>Promedio</th>
+                    <!--En estos 4 th de abajo ponemos los promedios de cada variable-->
+                    <th>Prom. T</th>
+                    <th>Prom. H</th>
+                    <th>Prom. V</th>
+                    <th>Prom. P</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+</div>
+
+<div class="collapse multi-collapse" id="multiCollapseExample2" style="padding-top: 40px;">
+    <div class="table-responsive">
+        <table class="table table-bordered" style="text-align: center; width: 75%; margin: 0px auto;">
+            <caption>Tabla 2: Últimas muestras recolectadas</caption>
+            <thead class="thead-light">
+                <tr>
+                  <th scope="col"><b>Variable</b></th>
+                  <th scope="col"><b>Valor</b></th>
+                  <th scope="col"><b>Unidad</b></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row">Temperatura</th>
+                    <td>10</td> <!--Acá hay que traer la temperatura desde el backend-->
+                    <td>°C</td>
+                </tr>
+                <tr>
+                    <th scope="row">Humedad</th>
+                    <td>90</td> <!--Acá hay que traer la humedad desde el backend-->
+                    <td>%</td>
+                </tr>
+                <tr>
+                    <th scope="row">Vel. del viento</th>
+                    <td>30</td> <!--Acá hay que traer la windspeed desde el backend-->
+                    <td>km/h</td>
+                </tr>
+                <tr>
+                    <th scope="row">Presión</th>
+                    <td>1014</td> <!--Acá hay que traer la presión desde el backend-->
+                    <td>hPa</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="container-fluid" style=" height: 70px"></div>
+
+<div class="card" style="width: 80%; margin: 0px auto;">
+    <div class="card-body">
+        <h4>Próxima actualización de los datos en (valor que traemos de Python) segundos</h4>
+        <div class="progress">
+            <div class="progress-bar progress-bar-striped progress-bar-animated bg-info" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%;">
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid" style=" height: 150px"></div>
+
+</main>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
