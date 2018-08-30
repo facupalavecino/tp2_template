@@ -1,6 +1,7 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.exc import StatementError
 from models import Samples
 
 import os
@@ -29,18 +30,33 @@ class Database(object):
     self.Base.metadata.create_all(engine)
   return self.session
 
-
+  #Query que devuelve la última muestra
  def get_last_sample(self):
-  session = self.get_session()
-  sample = session.query(Samples).order_by(Samples.id.desc()).first()
+  b1 = True;
+  while b1:
+    try:
+      session = self.get_session()
+      sample = session.query(Samples).order_by(Samples.id.desc()).first()
+      b1 = False
+      break
+    except StatementError:
+      session.rollback()
   session.close()
   if (sample):
     return sample.serialize()
 
+# Query que devuelve las últimas 10 muestras
  def get_samples(self):
-  session = self.get_session()
-  samples = session.query(Samples).order_by(Samples.id.desc()).limit(10).all()
-  session.close()
-  return [s.serialize() for s in samples]
+    b2 = True;
+    while b2:
+      try:
+        session = self.get_session()
+        samples = session.query(Samples).order_by(Samples.id.desc()).limit(10).all()
+        b2 = False
+        break
+      except StatementError:
+        session.rollback()
+    session.close()
+    return [s.serialize() for s in samples]
 
     

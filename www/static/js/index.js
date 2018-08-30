@@ -188,3 +188,9 @@ document.getElementById("startButton").addEventListener("click",function(){
 	startTimer();	
 });
 
+
+//Se le da la funcionalidad al botón de comienzo.
+document.getElementById("pauseButton").addEventListener("click",function(){
+    clearInterval(timer);   
+});
+

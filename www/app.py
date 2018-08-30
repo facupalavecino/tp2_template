@@ -12,7 +12,7 @@ p = Process()
 db = Database()
 
 
-
+#Punto de entrada de Flask
 @app.route('/')
 def index():
 	if not p.is_running():
@@ -26,6 +26,7 @@ if __name__ == "__main__":
 	app.run(host='0.0.0.0', port=9999)
 
 
+#Función para renderizar los promedios y las últimas 10 muestras
 @app.route('/avg/', methods = ["GET"])
 def ultimos_valores():
 	tempAvg = 0
@@ -46,11 +47,8 @@ def ultimos_valores():
 		presAvg = (presAvg /length)		
 	return jsonify(samples, tempAvg, humiAvg, windAvg, presAvg)
 
-
+#Función para renderizar la última muestra tomada
 @app.route('/last/', methods = ["GET"])
 def get_lastsample():
     sample = db.get_last_sample()
     return jsonify(sample)
-
-
-

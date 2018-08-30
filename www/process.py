@@ -8,6 +8,9 @@ db = Database()
 session = db.get_session()
 sample = Samples()
 
+#Se simulan los valores que toma la placa
+#Cada variable tiene un rango aleatorio pero acorde a lo que representa
+# Se arma la tupla de la muesta y se manda a la db
 while (True):
 	print("Process working")
 	h = random.randint(1,99)
