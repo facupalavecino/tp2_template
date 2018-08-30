@@ -59,17 +59,20 @@ function updateParameters(){
 function getData(){
 
     //Acá se pide la última
-    $.get("/last/", function(data) {
-        $("#sampleId").text(data.id);
-        $("#sampleTemp").text(data.temperature);
-        $("#samplePress").text(data.pressure);
-        $("#sampleHum").text(data.humidity);
-        $("#sampleWind").text(data.windspeed);
-        console.log("seconds = "+ seconds + ", ID = "+data.id);
-    });
+    //$.get("/avg/", function(data) {
+
+    //});
 
     //Acá se piden las 10 + promedios
      $.get("/avg/", function(avg) {
+
+        $("#sampleId").text(avg[0][0].id);
+        $("#sampleTemp").text(avg[0][0].temperature);
+        $("#samplePress").text(avg[0][0].pressure);
+        $("#sampleHum").text(avg[0][0].humidity);
+        $("#sampleWind").text(avg[0][0].windspeed);
+        console.log("seconds = "+ seconds + ", ID = "+avg[0][0].id);
+        
         $("#id1").text(avg[0][0].id);
         $("#temp1").text(avg[0][0].temperature);
         $("#humi1").text(avg[0][0].humidity);

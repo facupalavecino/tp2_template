@@ -16,7 +16,7 @@ db = Database()
 @app.route('/')
 def index():
 	if not p.is_running():
-		p.start_process()
+		p.start_process() 
 	else:
 		print("Already working")
 

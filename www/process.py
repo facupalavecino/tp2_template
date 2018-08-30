@@ -6,7 +6,7 @@ import time
 
 db = Database()
 session = db.get_session()
-sample = Samples()
+#sample = Samples()
 
 #Se simulan los valores que toma la placa
 #Cada variable tiene un rango aleatorio pero acorde a lo que representa
