@@ -12,121 +12,201 @@
 
     <link rel="stylesheet" href="/static/css/index.css">
 
+    <!--Lo que aparece en la pestaña del Chrome-->
     <title>Estación Meteorológica</title>
+
 </head>
 
 
 <body>
-<div class="navbar" style="background: #0097a7;">
+
+<!--Barra de arriba-->
+<div class="navbar" style="background: #0097a7; position: sticky; top: 0px; z-index: 2;">
     <span class="navbar-brand mb-1" style="color: white; font-size: 25px;">Estación Meteorológica</span>
 </div>
 
 <main>
 
+<!--Espacio entre la barra y el contenido para que no estén tan juntos-->
 <div class="container-fluid" style=" height: 150px"></div>
 
-<div class="card text-center" style="width: 80%; margin: 0px auto;">
+<!--Elemento 'bootstrap card' que es el marco de la barra de progreso-->
+<div class="card" style="width: 90%; margin: 0px auto;">
     <div class="card-body">
+        <!--Barra de progreso. El h4 queda vacío porque lo rellena idex.js-->
+        <h4 id="progressText"></h4>
+        <div class="progress">
+            <div class="progress-bar progress-bar-striped progress-bar-animated bg-info" id="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 2%;">
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Espacio entre la barra de progreso y los botones-->
+<div class="container-fluid" style=" height: 70px"></div>
+
+<!--Elemento 'bootstrap card' que envuelve a los botones-->
+<div class="card text-center" style="width: 90%; margin: 0px auto;">
+    <div class="card-body">
+        <!--Botón para arrancar a mostrar los datos-->
+        <button class="btn btn-success btn-lg" id="startButton">Empezar</button>        
+        <!--Botón para desplegar la tabla de las 10  muestras con el promedio-->
         <button class="btn btn-info btn-lg" data-toggle="collapse" href="#multiCollapseExample1" role="button" aria-expanded="false" aria-controls="multiCollapseExample1">Promedio de las últimas 10 muestras</button>
+        <!--Botón que despliega la tabla de la última muestra tomada-->
         <button class="btn btn-info btn-lg" type="button" data-toggle="collapse" data-target="#multiCollapseExample2" aria-expanded="false" aria-controls="multiCollapseExample2">Última muestra recolectada</button>
+        <!--Botón para seleccionar la frecuencia de actualización-->
         <div class="btn-group dropright">
           <button type="button" class="btn btn-lg btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Selección del período de muestreo
+            Seleccionar período de actualización
           </button>
           <div class="dropdown-menu">
-            <!--En cada una de estas opciones hay que mandar al backend el período de refresco correspondiente-->
-            <a id="option1" class="dropdown-item pointerCursor">1 segundo</a>
-            <a id="option2" class="dropdown-item pointerCursor">2 segundos</a>
-            <a id="option3" class="dropdown-item pointerCursor">5 segundos</a>
-            <a id="option4" class="dropdown-item pointerCursor">10 segundos</a>
-            <a id="option5" class="dropdown-item pointerCursor">30 segundos</a>
-            <a id="option6" class="dropdown-item pointerCursor">60 segundos</a>
+            <a id="option1" class="dropdown-item pointerCursor">Cada 1 segundo</a>
+            <a id="option2" class="dropdown-item pointerCursor">Cada 2 segundos</a>
+            <a id="option3" class="dropdown-item pointerCursor">Cada 5 segundos</a>
+            <a id="option4" class="dropdown-item pointerCursor">Cada 10 segundos</a>
+            <a id="option5" class="dropdown-item pointerCursor">Cada 30 segundos</a>
+            <a id="option6" class="dropdown-item pointerCursor">Cada 60 segundos</a>
           </div>
         </div>   
     </div>
 </div>
 
+<!--Tabla de 10 muestras y promedios-->
 <div class="collapse multi-collapse" id="multiCollapseExample1" style="padding-top: 25px;">
     <div class="table-responsive">
-        <table class="table table-bordered" style="text-align: center; width: 75%; margin: 0px auto;">
-            <caption>Tabla 1: Promedio de las últimas 10 muestras</caption>
+        <table class="table table-bordered" style="text-align: center; width: 75%; margin: 0px auto; z-index: 1;">
+            <caption style="text-align: center;">Tabla 1: Promedio de las últimas 10 muestras</caption>
             <thead class="thead-light">
                 <tr>
-                  <th scope="col"><b>ID</b></th>
-                  <th scope="col"><b>Temperatura</b></th>
-                  <th scope="col"><b>Humedad</b></th>
-                  <th scope="col"><b>Vel. del viento</b></th>
-                  <th scope="col"><b>Presión</b></th>
+                  <th scope="col" style="width: 20%"><b>ID</b></th>
+                  <th scope="col" style="width: 20%"><b>Temperatura [°C]</b></th>
+                  <th scope="col" style="width: 20%"><b>Humedad [%]</b></th>
+                  <th scope="col" style="width: 20%"><b>Vel. del viento [Km/h]</b></th>
+                  <th scope="col" style="width: 20%"><b>Presión [hPa]</b></th>
                 </tr>
             </thead>
+            <!--Los valores de cada celda los rellena index.js-->
             <tbody>
-                <!--Acá hay que reemplazar por un for y un solo bloque <tr><td> ya que el for hace los 10 necesarios.-->
                 <tr>
-                  <td>1</td>
-                  <td>2</td>
-                  <td>3</td>
-                  <td>4</td>
-                  <td>5</td>
+                  <td id="id1"></td>
+                  <td id="temp1"></td>
+                  <td id="humi1"></td>
+                  <td id="wind1"></td>
+                  <td id="pres1"></td>
                 </tr>
                 <tr>
-                  <td>a</td>
-                  <td>a</td>
-                  <td>a</td>
-                  <td>a</td>
-                  <td>a</td>
+                  <td id="id2"></td>
+                  <td id="temp2"></td>
+                  <td id="humi2"></td>
+                  <td id="wind2"></td>
+                  <td id="pres2"></td>
                 </tr>
                 <tr>
-                  <td>1</td>
-                  <td>2</td>
-                  <td>3</td>
-                  <td>4</td>
-                  <td>5</td>
+                  <td id="id3"></td>
+                  <td id="temp3"></td>
+                  <td id="humi3"></td>
+                  <td id="wind3"></td>
+                  <td id="pres3"></td>
+                </tr>
+                <tr>
+                  <td id="id4"></td>
+                  <td id="temp4"></td>
+                  <td id="humi4"></td>
+                  <td id="wind4"></td>
+                  <td id="pres4"></td>
+                </tr>
+                <tr>
+                  <td id="id5"></td>
+                  <td id="temp5"></td>
+                  <td id="humi5"></td>
+                  <td id="wind5"></td>
+                  <td id="pres5"></td>
+                </tr>
+                <tr>
+                  <td id="id6"></td>
+                  <td id="temp6"></td>
+                  <td id="humi6"></td>
+                  <td id="wind6"></td>
+                  <td id="pres6"></td>
+                </tr>
+                <tr>
+                  <td id="id7"></td>
+                  <td id="temp7"></td>
+                  <td id="humi7"></td>
+                  <td id="wind7"></td>
+                  <td id="pres7"></td>
+                </tr>
+                <tr>
+                  <td id="id8"></td>
+                  <td id="temp8"></td>
+                  <td id="humi8"></td>
+                  <td id="wind8"></td>
+                  <td id="pres8"></td>
+                </tr>
+                <tr>
+                  <td id="id9"></td>
+                  <td id="temp9"></td>
+                  <td id="humi9"></td>
+                  <td id="wind9"></td>
+                  <td id="pres9"></td>
+                </tr>
+                <tr>
+                  <td id="id10"></td>
+                  <td id="temp10"></td>
+                  <td id="humi10"></td>
+                  <td id="wind10"></td>
+                  <td id="pres10"></td>
                 </tr>
             </tbody>
             <thead class="thead-light">
                 <tr>
-                    <th>Promedio</th>
-                    <!--En estos 4 th de abajo ponemos los promedios de cada variable-->
-                    <th>Prom. T</th>
-                    <th>Prom. H</th>
-                    <th>Prom. V</th>
-                    <th>Prom. P</th>
+                    <th>Promedios</th>
+                    <th id="avgTemp"></th>
+                    <th id="avgHumi"></th>
+                    <th id="avgWind"></th>
+                    <th id="avgPres"></th>
                 </tr>
             </thead>
         </table>
     </div>
 </div>
 
+<!--Tabla de la última muestra-->
 <div class="collapse multi-collapse" id="multiCollapseExample2" style="padding-top: 40px;">
     <div class="table-responsive">
-        <table class="table table-bordered" style="text-align: center; width: 75%; margin: 0px auto;">
-            <caption>Tabla 2: Últimas muestras recolectadas</caption>
+        <table class="table table-bordered" style="text-align: center; width: 75%; margin: 0px auto; z-index: 1;">
+            <caption style="text-align: center;">Tabla 2: Últimas muestras recolectadas</caption>
             <thead class="thead-light">
                 <tr>
-                  <th scope="col"><b>Variable</b></th>
-                  <th scope="col"><b>Valor</b></th>
-                  <th scope="col"><b>Unidad</b></th>
+                    <th scope="col" style="width: 33.33%"><b>Variable/Atributo</b></th>
+                    <th scope="col" style="width: 33.33%"><b>Valor</b></th>
+                    <th scope="col" style="width: 33.33%"><b>Unidad</b></th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
+                    <th scope="row">ID</th>
+                    <td id="sampleId"></td>
+                    <td>-</td>
+                </tr>
+                <tr>
                     <th scope="row">Temperatura</th>
-                    <td>10</td> <!--Acá hay que traer la temperatura desde el backend-->
+                    <td id="sampleTemp"></td>
                     <td>°C</td>
                 </tr>
                 <tr>
                     <th scope="row">Humedad</th>
-                    <td>90</td> <!--Acá hay que traer la humedad desde el backend-->
+                    <td id="sampleHum"></td>
                     <td>%</td>
                 </tr>
                 <tr>
                     <th scope="row">Vel. del viento</th>
-                    <td>30</td> <!--Acá hay que traer la windspeed desde el backend-->
+                    <td id="sampleWind"></td>
                     <td>km/h</td>
                 </tr>
                 <tr>
                     <th scope="row">Presión</th>
-                    <td>1014</td> <!--Acá hay que traer la presión desde el backend-->
+                    <td id="samplePress"></td>
                     <td>hPa</td>
                 </tr>
             </tbody>
@@ -134,25 +214,14 @@
     </div>
 </div>
 
-<div class="container-fluid" style=" height: 70px"></div>
-
-<div class="card" style="width: 80%; margin: 0px auto;">
-    <div class="card-body">
-        <h4 id="progressText"></h4>
-        <div class="progress">
-            <div class="progress-bar progress-bar-striped progress-bar-animated bg-info" id="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 75%;">
-            </div>
-        </div>
-    </div>
-</div>
-
+<!--Espacio para que no quede tan abajo la última tabla al scrollear-->
 <div class="container-fluid" style=" height: 150px"></div>
 
 </main>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em" crossorigin="anonymous"></script>
     <script src="/static/js/index.js"></script>
