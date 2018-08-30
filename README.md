@@ -1,6 +1,4 @@
-# tp2_template
-
-# Proceso para iniciar
+# Leer antes de iniciar
 
 ##Puertos
 - phpMyAdmin: 9090:80
