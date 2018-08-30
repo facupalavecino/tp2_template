@@ -1,6 +1,6 @@
 # Leer antes de iniciar
 
-##Puertos
+## Puertos
 - phpMyAdmin: 9090:80
 - webserver: 9999:88
 - mysql: 7500:3306
